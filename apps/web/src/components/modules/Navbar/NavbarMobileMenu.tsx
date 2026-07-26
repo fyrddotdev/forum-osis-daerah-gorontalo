@@ -20,6 +20,7 @@ import {
 
 import { NavigationItem } from "@/interfaces/types";
 import { ThemeToogle } from "../Theme/ThemeToggle";
+import Link from "next/link";
 
 export default function NavbarMobileMenu({
   navigationItem,
@@ -55,7 +56,7 @@ export default function NavbarMobileMenu({
                   <div
                     className={cn(
                       // Default state
-                      "group flex items-center justify-between gap-2 w-full cursor-pointer pl-8 pr-2 py-2",
+                      "group flex items-center justify-between w-full cursor-pointer gap-1",
                       "pl-8 transition-all text-muted-foreground",
                       // Hover and Active state
                       "hover:text-foreground hover:font-bold",
@@ -78,7 +79,7 @@ export default function NavbarMobileMenu({
                 <CollapsibleContent>
                   <div className={cn("flex flex-col gap-4 w-full pt-4")}>
                     {item.dropdownItems?.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={cn(
@@ -90,14 +91,14 @@ export default function NavbarMobileMenu({
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </CollapsibleContent>
               </Collapsible>
             ) : (
               // If not, then just show default link
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
@@ -109,7 +110,7 @@ export default function NavbarMobileMenu({
                 )}
               >
                 {item.name}
-              </a>
+              </Link>
             ),
           )}
           <SheetFooter

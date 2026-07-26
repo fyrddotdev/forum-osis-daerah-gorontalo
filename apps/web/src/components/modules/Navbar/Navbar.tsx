@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { NavigationItem } from "@/interfaces/types";
 import NavbarMobileMenu from "./NavbarMobileMenu";
+import NavbarDesktopMenu from "./NavbarDesktopMenu";
 
 const navigationItem: NavigationItem[] = [
   { name: "Home", href: "/" },
@@ -13,9 +14,11 @@ const navigationItem: NavigationItem[] = [
     isDropdown: true,
     dropdownItems: [
       { name: "Tentang Organisasi", href: "/organisasi/tentang" },
-      { name: "Struktur Kepengurusan", href: "organisasi/struktur" },
+      { name: "Struktur Kepengurusan", href: "/organisasi/struktur" },
     ],
   },
+  { name: "Artikel", href: "/artikel" },
+  { name: "Galeri", href: "/galeri" },
 ];
 export default function Navbar() {
   return (
@@ -61,6 +64,10 @@ export default function Navbar() {
         {/* Mobile design first */}
         <div className={cn("sm:hidden z-51")}>
           <NavbarMobileMenu navigationItem={navigationItem} />
+        </div>
+        {/* Then desktop ^_^ */}
+        <div className={cn("hidden sm:block w-full z-51 mx-4")}>
+          <NavbarDesktopMenu navigationItem={navigationItem} />
         </div>
       </nav>
     </>
