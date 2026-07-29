@@ -10,7 +10,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
 } from "@/components/ui/sheet";
 import {
   Collapsible,
@@ -19,7 +18,6 @@ import {
 } from "@/components/ui/collapsible";
 
 import { NavigationItem } from "@/interfaces/types";
-import { ThemeToogle } from "../Theme/ThemeToggle";
 import Link from "next/link";
 
 export default function NavbarMobileMenu({
@@ -113,12 +111,6 @@ export default function NavbarMobileMenu({
               </Link>
             ),
           )}
-          <SheetFooter
-            className={cn("flex flex-row justify-center items-center")}
-          >
-            <h1>Ganti tema :</h1>
-            <ThemeToogle />
-          </SheetFooter>
         </SheetContent>
       </Sheet>
     </>

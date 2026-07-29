@@ -5,6 +5,14 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@sanity/diff@6.7.0'
+  - '@sanity/mutator@6.7.0'
+  - '@sanity/schema@6.7.0'
+  - '@sanity/types@6.7.0'
+  - '@sanity/util@6.7.0'
+  - '@sanity/vision@6.7.0'
+  - sanity@6.7.0
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:web": "pnpm --filter web dev",
-    "dev:studio": "pnpm --filter studio dev",
+    "dev:studio": "pnpm --filter majalah-foda-gorontalo dev",
     "dev:all": "pnpm --parallel --filter ./apps/* dev",
     "build": "pnpm --filter web build"
   },

@@ -34,8 +34,8 @@ export default function NavbarDesktopMenu({
             </NavigationMenuItem>
           ) : (
             <NavigationMenuItem key={item.name}>
-              <NavigationMenuLink>
-                <Link href={item.href}>{item.name}</Link>
+              <NavigationMenuLink href={item.href}>
+                {item.name}
               </NavigationMenuLink>
             </NavigationMenuItem>
           ),

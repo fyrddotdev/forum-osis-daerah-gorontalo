@@ -5,10 +5,10 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'majalah-foda-gorontalo',
+  title: process.env.SANITY_STUDIO_PROJECT_NAME,
 
-  projectId: 'bgyj8cxf',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
 
   plugins: [structureTool(), visionTool()],
 
