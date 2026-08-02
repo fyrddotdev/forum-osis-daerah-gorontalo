@@ -23,17 +23,19 @@ export default function NavbarDesktopMenu({
         {navigationItem.map((item: NavigationItem) =>
           item.isDropdown ? (
             <NavigationMenuItem key={item.name}>
-              <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-semibold">
+                {item.name}
+              </NavigationMenuTrigger>
               <NavigationMenuContent className={cn("w-50")}>
                 {item.dropdownItems?.map((item) => (
-                  <NavigationMenuLink key={item.name}>
-                    <Link href={item.href}>{item.name}</Link>
+                  <NavigationMenuLink href={item.href} key={item.name}>
+                    {item.name}
                   </NavigationMenuLink>
                 ))}
               </NavigationMenuContent>
             </NavigationMenuItem>
           ) : (
-            <NavigationMenuItem key={item.name}>
+            <NavigationMenuItem className="font-semibold" key={item.name}>
               <NavigationMenuLink href={item.href}>
                 {item.name}
               </NavigationMenuLink>

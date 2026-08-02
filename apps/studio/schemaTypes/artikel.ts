@@ -51,7 +51,7 @@ export const artikelSchema = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'excerpt',
+      name: 'ringkasan',
       title: 'Ringkasan Singkat (Lead Excerpt)',
       description: 'Tampil di card preview artikel (1-2 kalimat singkat).',
       type: 'text',

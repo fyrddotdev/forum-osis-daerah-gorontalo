@@ -1,6 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 import { NavigationItem } from "@/interfaces/types";
 import NavbarMobileMenu from "./NavbarMobileMenu";
@@ -22,18 +25,28 @@ const navigationItem: NavigationItem[] = [
 ];
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <nav
         className={cn(
-          // Position And Sizing
-          "sticky top-0 w-full z-50",
-          // Color and Styling
-          "bg-background text-foreground border-b",
+          "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
+
           // For its children
           "p-3 sm:p-4 flex items-center justify-between",
-          // Decoration
-          "shadow-md",
+
+          // LOGIKA DIPERBAIKI:
+          isScrolled ? "bg-background drop-shadow-md" : "bg-transparent"
         )}
       >
         {/* Icon ( Mobile )*/}

@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist } from "next/font/google";
+import {
+  Plus_Jakarta_Sans,
+  Playfair_Display,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 // Such a weird thing to use black theme in organization website ;)
 // import { ThemeProvider } from "@/lib/ThemeProvider";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-sans",
 });
 
-const geistSans = Geist({
+const fontSerif = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-serif",
+});
+
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -32,8 +41,9 @@ export default function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        plusJakarta.variable,
-        geistSans.variable,
+        fontSans.variable,
+        fontSerif.variable,
+        fontMono.variable,
         "font-sans",
       )}
       suppressHydrationWarning

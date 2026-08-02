@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section id="hero">
-      <div className={cn("absolute overflow-hidden w-full h-[90vh]")}>
+    <section id="hero" className="relative w-full h-screen overflow-hidden">
+      <div className={cn("absolute overflow-hidden w-full h-screen")}>
         <Image
           src="/photos/image_hero.webp"
           alt="Forum OSIS Daerah Gorontalo Angkatan 1"
@@ -15,12 +15,12 @@ export default function HeroSection() {
         />
         <div
           className={cn(
-            "absolute inset-0 bg-linear-to-t from-gray-900/90 via-gray-900/50 to-gray-900/10 -z-10",
+            "absolute bg-linear-to-b from-white/50 via-gray-700/75 to-gray-700/75 inset-0 -z-10",
           )}
         />
         <div
           className={cn(
-            "relative w-full h-full flex flex-col items-center text-center justify-center font-heading text-white",
+            "relative w-full h-full flex flex-col items-center text-center justify-center font-heading text-white p-2",
           )}
         >
           <Image
@@ -41,7 +41,9 @@ export default function HeroSection() {
           >
             FORUM OSIS DAERAH PROVINSI GORONTALO
           </h1>
-          <h3>BE BRAVE, BE THE CHANGE 💛✨</h3>
+          <h3 className="text-lg font font-lightbold">
+            BE BRAVE, BE THE CHANGE 💛✨
+          </h3>
         </div>
       </div>
     </section>
