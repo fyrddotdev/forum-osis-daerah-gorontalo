@@ -38,8 +38,8 @@ export default function NavbarMobileMenu({
         />
         <SheetContent className={cn("text-base")}>
           <SheetHeader>
-            <SheetTitle>
-              <h1 className={cn("text-lg font-extrabold")}>Menu Navigasi</h1>
+            <SheetTitle className="text-lg font-extrabold">
+              Menu Navigasi
             </SheetTitle>
           </SheetHeader>
           {navigationItem.map((item) =>
