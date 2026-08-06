@@ -45,7 +45,6 @@ export default function Navbar() {
           // For its children
           "p-3 sm:p-4 flex items-center justify-between",
 
-          // LOGIKA DIPERBAIKI:
           isScrolled ? "bg-background drop-shadow-md" : "bg-transparent",
         )}
       >

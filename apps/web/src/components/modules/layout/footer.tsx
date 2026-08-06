@@ -8,7 +8,7 @@ export default function Footer() {
       id="footer"
       className=" bg-linear-to-br from-primary to-primary/80 z-10"
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-16 relative text-primary-foreground">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 sm:py-16 relative text-primary-foreground">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4 gap-4">
           <div>
             <h1 className="text-xl font-bold">FODA Gorontalo</h1>

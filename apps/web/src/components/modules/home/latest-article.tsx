@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { client } from "@/lib/sanity/client";
+import { client, urlFor } from "@/lib/sanity/client";
 import Image from "next/image";
 import Link from "next/link";
 import { LucideCalendar, ArrowRight, User } from "lucide-react";
@@ -16,8 +16,8 @@ interface Query {
   penulis: string;
   ringkasan: string;
   publishedAt: string;
+  imageRef: string;
   slug: string;
-  imageUrl: string;
   imageCaption: string;
 }
 
@@ -26,8 +26,8 @@ const QUERY = groq`*[_type == "artikel"] | order(_createdAt desc)[0..5]{
   penulis,
   ringkasan,
   publishedAt,
+  'imageRef':mainImage.asset._ref,
   'slug': slug.current,
-  'imageUrl': mainImage.asset->url,
   'imageCaption': mainImage.caption,
 }`;
 
@@ -75,7 +75,7 @@ export default async function LatestArticles() {
             <Card className="p-0 pb-4y h-full shadow-md transition-all duration-300 hover:text-primary hover:shadow-2xl hover:-translate-y-1">
               <CardHeader className="relative aspect-video overflow-hidden w-full">
                 <Image
-                  src={article.imageUrl}
+                  src={urlFor(article.imageRef).quality(75).url()}
                   alt={article.imageCaption}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

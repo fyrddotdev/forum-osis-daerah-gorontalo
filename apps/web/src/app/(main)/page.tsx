@@ -3,7 +3,7 @@ import LatestArticles from "../../components/modules/home/latest-article";
 import AboutUs from "../../components/modules/home/about-us";
 
 
-export default function Main() {
+export default function MainPage() {
   return (
     <main className="flex flex-col w-full">
       <HeroSection />
