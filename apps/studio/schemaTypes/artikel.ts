@@ -27,11 +27,9 @@ export const artikelSchema = defineType({
       type: 'string',
       options: {
         list: [
-          {title: '📰 Berita Sekolah', value: 'berita'},
-          {title: '✍️ Opini & Suara Siswa', value: 'opini'},
-          {title: '🎨 Karya Siswa', value: 'karya'},
-          {title: '🎧 Lifestyle & Pop Culture', value: 'lifestyle'},
-          {title: '🎙️ Profil & Wawancara', value: 'profil'},
+          {title: 'Berita Sekolah', value: 'berita'},
+          {title: 'Prestasi', value: 'prestasi'},
+          {title: 'Program Kerja', value: 'proker'},
         ],
       },
       validation: (Rule) => Rule.required(),
