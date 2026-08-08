@@ -10,3 +10,13 @@ export interface DropdownItem {
   name: string;
   href: string;
 }
+
+export interface QueryLatest {
+  title: string;
+  penulis: string;
+  ringkasan: string;
+  publishedAt: string;
+  imageRef: string;
+  slug: string;
+  imageCaption: string;
+}
