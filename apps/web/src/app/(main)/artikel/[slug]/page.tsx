@@ -4,6 +4,48 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 import { LucideUser, LucideCalendar } from "lucide-react";
 import { getArticleBySlug } from "@/services/sanity/artikel";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return {
+      title: "Artikel Tidak Ditemukan",
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.ringkasan,
+    openGraph: {
+      title: article.title,
+      description: article.ringkasan,
+      type: "article",
+      publishedTime: article.publishedAt,
+      authors: [article.penulis || "Forum OSIS Daerah Gorontalo"],
+      images: [
+        {
+          url: urlFor(article.imageRef).width(1200).height(630).url(),
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.ringkasan,
+      images: [urlFor(article.imageRef).width(1200).height(630).url()],
+    },
+  };
+}
 
 const components: PortableTextComponents = {
   types: {

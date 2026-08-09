@@ -62,7 +62,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-10">
+        <div className="left-1/2 -translate-x-1/2 z-10">
           <ScrollIndicator />
         </div>
       </div>
