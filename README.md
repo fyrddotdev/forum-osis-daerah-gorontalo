@@ -105,6 +105,6 @@ Proyek ini mengikuti standar arsitektur bersih untuk Next.js:
 
 ## 👨‍💻 Kontributor & Special Mention
 
-- **Moh. Farid Dunggio** - Lead Developer - [@itsjustfarid](https://github.com/fyrddotdev)
+- **Moh. Farid Dunggio** - Lead Developer - [@fyrddotdev](https://github.com/fyrddotdev)
 
 Developed with ❤️ by **Forum OSIS Daerah Gorontalo**.
