@@ -6,6 +6,8 @@
 - Tulis kode yang ringkas dan sertakan komentar penjelasan jika ada logika yang rumit.
 - Jawab dalam Bahasa Indonesia yang santai.
 - Gunakan Sanity untuk CMS.
+- Utamakan layout responsif dan mobile-first.
+- Optimalkan kode untuk performa dan aksesibilitas serta SEO.
 
 # File & Folder Structure Rules
 

@@ -4,6 +4,7 @@ import { motion, Variants } from "motion/react";
 
 interface Props {
   children: React.ReactNode;
+  once?: boolean;
 }
 
 const popupVariants: Variants = {
@@ -14,6 +15,15 @@ const popupVariants: Variants = {
     transition: { duration: 1, times: [0, 0.75, 1], ease: "easeInOut" },
   },
 };
-export default function Popup({ children }: Props) {
-  return <motion.div variants={popupVariants}>{children}</motion.div>;
+export default function Popup({ children, once = true }: Props) {
+  return (
+    <motion.div
+      variants={popupVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, amount: 0.2 }}
+    >
+      {children}
+    </motion.div>
+  );
 }

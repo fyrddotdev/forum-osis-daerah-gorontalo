@@ -42,7 +42,7 @@ export default function Footer() {
               href="https://fyrd-dev.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary hover:opacity-80"
+              className="text-primary hover:opacity-80"
             >
               Moh. Farid Dunggio
             </Link>
