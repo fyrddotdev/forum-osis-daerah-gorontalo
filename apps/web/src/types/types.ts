@@ -26,3 +26,19 @@ export interface Article {
 export interface FullArticle extends Article {
   body: PortableTextProps["value"];
 }
+
+export interface StrukturKepengurusan {
+  angkatan: number;
+  bidang: string;
+  anggotaList: Array<AnggotaBidang>;
+}
+export interface AnggotaBidang {
+  _type: "anggota";
+  nama: string;
+  jabatan: string;
+  sekolah: string;
+  instagram?: string;
+  tiktok?: string;
+  website?: string;
+  foto?: string;
+}

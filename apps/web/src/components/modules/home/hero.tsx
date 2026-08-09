@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import ScrollIndicator from "@/components/shared/scroll-indicator";
-import CtaHeroButton from "@/components/shared/cta-hero-button";
 
 export default function HeroSection() {
   return (
@@ -14,10 +13,7 @@ export default function HeroSection() {
           priority
           className="object-cover object-bottom -z-50"
         />
-        <div
-          className={cn(
-            "absolute bg-linear-to-b from-white/50 via-gray-700/75 to-gray-700/75 inset-0 -z-10",
-          )}
+        <div className="absolute bg-linear-to-b from-white/50 via-gray-800/75 to-gray-900/75 inset-0 -z-10"
         />
         <div
           className={cn(
@@ -45,21 +41,6 @@ export default function HeroSection() {
           <h3 className="text-lg font-medium italic mb-8">
             BE BRAVE, BE THE CHANGE 💛✨
           </h3>
-
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-16">
-            <CtaHeroButton
-              label="Tentang Kami"
-              href="#about-us"
-              variant="primary"
-              delay={0.8}
-            />
-            <CtaHeroButton
-              label="Artikel"
-              href="/artikel"
-              variant="outline"
-              delay={1}
-            />
-          </div>
           <div className="z-10">
             <ScrollIndicator />
           </div>

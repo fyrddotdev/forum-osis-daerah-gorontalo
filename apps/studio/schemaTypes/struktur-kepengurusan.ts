@@ -11,7 +11,34 @@ export const strukturKepengurusan = defineType({
       type: 'number',
       description:
         'Contoh: Jika dilantik pada tahun 2026, maka gunakan 2026 ( tanpa strip tahun 2027 )',
-      validation: (Rule) => Rule.required().min(2026).max(3000),
+      validation: (Rule) =>
+        Rule.required()
+          .min(2026)
+          .max(3000)
+          .custom(async (value, context) => {
+            const {getClient, document} = context
+            const client = getClient({apiVersion: '2026-08-09'})
+            const id = document?._id.replace('drafts.', '')
+            const bidang = document?.bidang
+
+            if (!value || !bidang) return true
+
+            const params = {
+              type: 'strukturKepengurusan',
+              angkatan: value,
+              bidang: bidang,
+              id: id,
+            }
+
+            const query = `*[_type == $type && angkatan == $angkatan && bidang == $bidang && _id != $id && !(_id in path('drafts.**'))][0]`
+            const alreadyExists = await client.fetch(query, params)
+
+            if (alreadyExists) {
+              return 'Kombinasi Tahun Angkatan dan Bidang ini sudah ada!'
+            }
+
+            return true
+          }),
     }),
     defineField({
       name: 'bidang',
