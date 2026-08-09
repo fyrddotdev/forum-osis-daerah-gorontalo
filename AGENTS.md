@@ -12,7 +12,16 @@
 - Gunakan arsitektur komponen bertingkat sesuai dengan standar umum.
 - src/app/ untuk halaman dan routing.
 - src/components/ untuk komponen UI.
-- sebagai catatan, src/components/ui adalah hasil generate oleh shadcn/ui.
-- src/lib/ untuk utilities dan helpers.
-- src/hooks/ untuk hooks React.
+  - `src/components/ui/` untuk komponen dasar (shadcn/ui).
+  - `src/components/shared/` untuk komponen global (Navbar, Footer, dsb).
+  - `src/components/modules/` untuk komponen spesifik fitur (Home, Artikel, dsb).
+- src/services/ untuk logika fetch data dan query (Sanity GROQ).
+- src/lib/ untuk konfigurasi external library (Sanity Client, dsb).
+- src/utils/ untuk fungsi pembantu (pure functions).
+- src/hooks/ untuk custom hooks React.
 - src/types/ untuk tipe data dan interfaces.
+
+# Commit git message
+
+- Gunakan format commit yang jelas dan deskriptif.
+- Menjelaskan seluruh fitur yang baru saja diubah.
