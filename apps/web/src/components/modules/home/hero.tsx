@@ -12,7 +12,6 @@ export default function HeroSection() {
           alt="Forum OSIS Daerah Gorontalo Angkatan 1"
           fill
           priority
-          unoptimized
           className={cn("object-cover object-bottom -z-50")}
         />
         <div
