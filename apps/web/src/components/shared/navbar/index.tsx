@@ -70,7 +70,7 @@ export default function Navbar() {
           ></Image>
         </Link>
 
-        {/* It's time to design the navigation button ^_^ */}
+        {/* It's time to design the navigation button hehe ^_^ */}
 
         {/* Mobile design first */}
         <div className={cn("sm:hidden z-51")}>
