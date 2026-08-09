@@ -56,7 +56,6 @@ export default function Navbar() {
             src="/foda.png"
             alt="Logo Forum OSIS Daerah Provini Gorontalo"
             priority
-            unoptimized
           ></Image>
         </Link>
 
@@ -68,7 +67,6 @@ export default function Navbar() {
             src="/foda.png"
             alt="Logo Forum OSIS Daerah Provini Gorontalo"
             priority
-            unoptimized
           ></Image>
         </Link>
 
