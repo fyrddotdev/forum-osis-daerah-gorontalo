@@ -1,6 +1,6 @@
 
-import Navbar from "@/components/modules/layout/navbar";
-import Footer from "@/components/modules/layout/footer";
+import Navbar from "@/components/shared/navbar";
+import Footer from "@/components/shared/footer";
 
 
 import React from "react";

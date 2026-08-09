@@ -1,6 +1,6 @@
 "use client";
 
-import { NavigationItem } from "@/interfaces/types";
+import { NavigationItem } from "@/types/types";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,

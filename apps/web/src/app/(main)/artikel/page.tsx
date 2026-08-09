@@ -1,39 +1,8 @@
-import CardArticle from "@/components/modules/layout/card-article";
+import CardArticle from "@/components/modules/artikel/card-article";
 import Searchbar from "@/components/modules/artikel/searchbar";
-import PageWrapper from "@/components/modules/layout/page-wrapper";
-import { client } from "@/lib/sanity/client";
-import { groq } from "next-sanity";
+import PageWrapper from "@/components/shared/page-wrapper";
 import Link from "next/link";
-
-interface QuerySearch {
-  title: string;
-  publishedAt: string;
-  penulis: string;
-  ringkasan: string;
-  slug: string;
-  imageRef: string;
-  imageCaption: string;
-}
-
-const searchQuery = groq`*[_type == "artikel" && title match $q || ringkasan match $q] | order(_createdAt desc)[0...$limit]{
-  title,
-  publishedAt,
-  penulis,
-  ringkasan,
-  'slug': slug.current,
-  'imageRef': mainImage.asset._ref,
-  'imageCaption': mainImage.caption,
-}`;
-
-const defaultQuery = groq`*[_type == "artikel"] | order(_createdAt desc)[0...$limit] {
-  title,
-  publishedAt,
-  penulis,
-  ringkasan,
-  'slug': slug.current,
-  'imageRef': mainImage.asset._ref,
-  'imageCaption': mainImage.caption,
-}`;
+import { getAllArticles, searchArticles } from "@/services/sanity/artikel";
 
 export default async function ArtikelPage({
   searchParams,
@@ -45,8 +14,8 @@ export default async function ArtikelPage({
   const limit = Number(params.limit) || 6;
 
   const result = query
-    ? await client.fetch<QuerySearch[]>(searchQuery, { q: query, limit })
-    : await client.fetch<QuerySearch[]>(defaultQuery, { limit });
+    ? await searchArticles(query, limit)
+    : await getAllArticles(limit);
 
   return (
     <PageWrapper>
@@ -60,7 +29,7 @@ export default async function ArtikelPage({
         <Searchbar />
         <div className="mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {result.map((item: QuerySearch) => (
+            {result.map((item) => (
               <CardArticle key={item.slug} article={item} />
             ))}
           </div>
@@ -80,4 +49,3 @@ export default async function ArtikelPage({
     </PageWrapper>
   );
 }
-

@@ -1,38 +1,13 @@
-import PageWrapper from "@/components/modules/layout/page-wrapper";
-import { client, urlFor } from "@/lib/sanity/client";
-import { groq } from "next-sanity";
-import {
-  PortableText,
-  PortableTextComponents,
-  PortableTextProps,
-} from "@portabletext/react";
+import PageWrapper from "@/components/shared/page-wrapper";
+import { urlFor } from "@/lib/sanity/client";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 import { LucideUser, LucideCalendar } from "lucide-react";
-
-interface Artikel {
-  body: PortableTextProps["value"];
-  imageRef: string;
-  imageCaption: string;
-  penulis: string;
-  publishedAt: string;
-  ringkasan: string;
-  title: string;
-}
-
-const QUERY = groq`*[_type == "artikel" && slug.current == $slug][0] {
- body,
- 'imageRef': mainImage.asset._ref,
- 'imageCaption': mainImage.caption,
- penulis,
- publishedAt,
- ringkasan,
- title,
-}`;
+import { getArticleBySlug } from "@/services/sanity/artikel";
 
 const components: PortableTextComponents = {
   types: {
     image: ({ value }) => {
-      // Jika data aset gambarnya tidak ada, jangan render apa-apa
       if (!value?.asset?._ref) return null;
 
       return (
@@ -62,8 +37,9 @@ export default async function SlugPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const result = await getArticleBySlug(slug);
 
-  const result = await client.fetch<Artikel>(QUERY, { slug });
+  if (!result) return <div>Artikel tidak ditemukan</div>;
 
   return (
     <PageWrapper>
@@ -71,7 +47,7 @@ export default async function SlugPage({
         <header>
           <div className="mb-4">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
-              {result?.title}
+              {result.title}
             </h1>
             <div className="flex flex-row gap-4 mt-2 mb-6 md:mt-4 md:mb-10">
               <div className="flex flex-row gap-1 items-center text-muted-foreground">
@@ -83,7 +59,11 @@ export default async function SlugPage({
               <div className="flex flex-row gap-1 items-center text-muted-foreground">
                 <LucideCalendar className="size-4" />
                 <span className="text-sm md:text-base">
-                  {new Date(result.publishedAt).toLocaleDateString()}
+                  {new Date(result.publishedAt).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </span>
               </div>
             </div>

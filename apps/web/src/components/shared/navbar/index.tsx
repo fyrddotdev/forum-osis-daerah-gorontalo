@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import { NavigationItem } from "@/interfaces/types";
+import { NavigationItem } from "@/types/types";
 import NavbarMobileMenu from "./navbar-mobile-menu";
 import NavbarDesktopMenu from "./navbar-desktop-menu";
 

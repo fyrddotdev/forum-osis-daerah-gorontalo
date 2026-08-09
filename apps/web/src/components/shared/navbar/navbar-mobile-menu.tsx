@@ -17,7 +17,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-import { NavigationItem } from "@/interfaces/types";
+import { NavigationItem } from "@/types/types";
 import Link from "next/link";
 
 export default function NavbarMobileMenu({

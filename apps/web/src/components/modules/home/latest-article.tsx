@@ -1,26 +1,10 @@
-import { groq } from "next-sanity";
-import { client } from "@/lib/sanity/client";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import CardArticle from "@/components/modules/layout/card-article";
-import { QueryLatest } from "@/interfaces/types";
-
-const QUERY = groq`*[_type == "artikel"] | order(_createdAt desc)[0..5]{
-  title,
-  penulis,
-  ringkasan,
-  publishedAt,
-  'imageRef':mainImage.asset._ref,
-  'slug': slug.current,
-  'imageCaption': mainImage.caption,
-}`;
+import CardArticle from "@/components/modules/artikel/card-article";
+import { getLatestArticles } from "@/services/sanity/artikel";
 
 export default async function LatestArticles() {
-  const response = await client.fetch<QueryLatest[]>(
-    QUERY,
-    {},
-    { next: { revalidate: 60 } },
-  );
+  const response = await getLatestArticles();
 
   return (
     <section id="latest-articles">
@@ -48,9 +32,8 @@ export default async function LatestArticles() {
         </Link>
       </div>
 
-      {/*{Article grid below here!}*/}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {response.map((article: QueryLatest) => (
+        {response.map((article) => (
           <CardArticle key={article.slug} article={article} />
         ))}
       </div>

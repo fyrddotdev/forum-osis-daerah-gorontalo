@@ -11,7 +11,9 @@ export interface DropdownItem {
   href: string;
 }
 
-export interface QueryLatest {
+import { PortableTextProps } from "@portabletext/react";
+
+export interface Article {
   title: string;
   penulis: string;
   ringkasan: string;
@@ -19,4 +21,8 @@ export interface QueryLatest {
   imageRef: string;
   slug: string;
   imageCaption: string;
+}
+
+export interface FullArticle extends Article {
+  body: PortableTextProps["value"];
 }
