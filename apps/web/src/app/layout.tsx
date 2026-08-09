@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     siteName: "Forum OSIS Daerah Gorontalo",
     images: [
       {
-        url: "https://r2.erweje.me/foda/hero-og.jpg",
-        width: 1200,
-        height: 630,
+        url: "/photos/image_hero.webp",
+        width: 1280,
+        height: 960,
         alt: "Forum OSIS Daerah Gorontalo",
       },
     ],
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Forum OSIS Daerah Gorontalo",
     description:
       "Wadah kolaborasi, aspirasi, dan pengembangan potensi pengurus OSIS se-Provinsi Gorontalo untuk mewujudkan generasi pemimpin yang inspiratif.",
-    images: ["https://r2.erweje.me/foda/hero-og.jpg"],
+    images: ["/photos/image_hero.webp"],
   },
   robots: {
     index: true,
@@ -111,11 +111,13 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

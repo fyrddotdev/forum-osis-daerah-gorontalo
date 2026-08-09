@@ -12,7 +12,7 @@ export default function HeroSection() {
           alt="Forum OSIS Daerah Gorontalo Angkatan 1"
           fill
           priority
-          className={cn("object-cover object-bottom -z-50")}
+          className="object-cover object-bottom -z-50"
         />
         <div
           className={cn(
@@ -46,7 +46,7 @@ export default function HeroSection() {
             BE BRAVE, BE THE CHANGE 💛✨
           </h3>
 
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-16">
             <CtaHeroButton
               label="Tentang Kami"
               href="#about-us"
@@ -60,10 +60,9 @@ export default function HeroSection() {
               delay={1}
             />
           </div>
-        </div>
-
-        <div className="left-1/2 -translate-x-1/2 z-10">
-          <ScrollIndicator />
+          <div className="z-10">
+            <ScrollIndicator />
+          </div>
         </div>
       </div>
     </section>
