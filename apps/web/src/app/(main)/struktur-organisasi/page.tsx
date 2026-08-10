@@ -5,21 +5,24 @@ import {
   getStrukturAngkatanArray,
   getStrukturKepengurusanByName,
 } from "@/services/sanity/struktur-kepengurusan";
-
+import Searchbar from "@/components/shared/searchbar";
+import ComboBoxAngkatan from "@/components/modules/struktur-organisasi/filter-combobox";
 
 export default async function StrukturOrganisasiPage({
   searchParams,
 }: {
-  searchParams: Promise<{ name: string; angkatan: number }>;
+  searchParams: Promise<{ q: string; angkatan: number }>;
 }) {
+
   const params = await searchParams;
-  const query_name = params.name || "";
-  const angkatan = params.angkatan || 2026;
-  const result = query_name
-    ? await getStrukturKepengurusanByName(query_name, angkatan)
+  const q = params.q || "";
+  const angkatan =
+    params.angkatan || (await getStrukturAngkatanArray()).map((a) => a)[0];
+
+  const result = q
+    ? await getStrukturKepengurusanByName(q, angkatan)
     : await getStrukturKepengurusan(angkatan);
   const list_angkatan = await getStrukturAngkatanArray();
-
   return (
     <FadeIn>
       <PageWrapper>
@@ -33,7 +36,15 @@ export default async function StrukturOrganisasiPage({
         </header>
 
         <section className="p-4 sm:p-6 md:p-12" id="content">
-          <div className="flex justify-center mb-8"></div>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full mb-8">
+            <div className="w-full sm:flex-1">
+              <Searchbar url="/struktur-organisasi" />
+            </div>
+            <ComboBoxAngkatan
+              default_angkatan={angkatan}
+              list_angkatan={list_angkatan}
+            />
+          </div>
 
           <div className="mt-4">
             <div className="flex flex-col gap-12">

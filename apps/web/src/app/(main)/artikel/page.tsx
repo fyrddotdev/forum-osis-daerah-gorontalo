@@ -1,5 +1,5 @@
 import CardArticle from "@/components/modules/artikel/card-article";
-import Searchbar from "@/components/modules/artikel/searchbar";
+import Searchbar from "@/components/shared/searchbar";
 import PageWrapper from "@/components/shared/page-wrapper";
 import Link from "next/link";
 import { getAllArticles, searchArticles } from "@/services/sanity/artikel";
@@ -30,7 +30,7 @@ export default async function ArtikelPage({
           </p>
         </header>
         <section className="p-4 sm:p-6 md:p-12" id="content">
-          <Searchbar />
+          <Searchbar placeholder="Cari artikel..." url="/artikel" />
           <div className="mt-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {result.map((item) => (
