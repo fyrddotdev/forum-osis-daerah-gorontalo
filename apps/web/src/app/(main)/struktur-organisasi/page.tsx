@@ -7,13 +7,19 @@ import {
 } from "@/services/sanity/struktur-kepengurusan";
 import Searchbar from "@/components/shared/searchbar";
 import ComboBoxAngkatan from "@/components/modules/struktur-organisasi/filter-combobox";
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 
 export default async function StrukturOrganisasiPage({
   searchParams,
 }: {
   searchParams: Promise<{ q: string; angkatan: number }>;
 }) {
-
   const params = await searchParams;
   const q = params.q || "";
   const angkatan =
@@ -23,6 +29,19 @@ export default async function StrukturOrganisasiPage({
     ? await getStrukturKepengurusanByName(q, angkatan)
     : await getStrukturKepengurusan(angkatan);
   const list_angkatan = await getStrukturAngkatanArray();
+  console.log(result);
+  const getBidangLabel = (bidang: string) => {
+    const labels: Record<string, string> = {
+      bph: "Badan Pengurus Harian",
+      keagamaan: "Bidang Keagamaan",
+      hubmaskominfo: "Bidang Humas & Kominfo",
+      kajianstrategis: "Bidang Kajian Strategis",
+      organisasikelembagaan: "Bidang Organisasi & Kelembagaan",
+      psdm: "Bidang PSDM",
+    };
+    return labels[bidang] || bidang;
+  };
+
   return (
     <FadeIn>
       <PageWrapper>
@@ -30,15 +49,15 @@ export default async function StrukturOrganisasiPage({
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase">
             Struktur Kepengurusan
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mt-2">
-            Forum OSIS Daerah Provinsi Gorontalo
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mt-2 uppercase">
+            Angkatan {angkatan} - Forum OSIS Daerah Provinsi Gorontalo
           </p>
         </header>
 
         <section className="p-4 sm:p-6 md:p-12" id="content">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full mb-12">
             <div className="w-full sm:flex-1">
-              <Searchbar url="/struktur-organisasi" />
+              <Searchbar url="struktur-organisasi" />
             </div>
             <ComboBoxAngkatan
               default_angkatan={angkatan}
@@ -46,23 +65,47 @@ export default async function StrukturOrganisasiPage({
             />
           </div>
 
-          <div className="mt-4">
-            <div className="flex flex-col gap-12">
-              <div className="space-y-6">
+          <div className="mt-4 flex flex-col gap-16">
+            {result.map((item) => (
+              <div key={item.bidang} className="space-y-8">
                 <div className="text-center">
-                  <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-1">
-                    Badan Pengurus Harian
+                  <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
+                    {getBidangLabel(item.bidang)}
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  <div className="aspect-3/4 bg-muted rounded-2xl animate-pulse" />
-                  <div className="aspect-3/4 bg-muted rounded-2xl animate-pulse" />
-                  <div className="aspect-3/4 bg-muted rounded-2xl animate-pulse" />
-                  <div className="aspect-3/4 bg-muted rounded-2xl animate-pulse" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                  {item.anggotaList && item.anggotaList.length > 0 ? (
+                    item.anggotaList.map((anggota) => (
+                      <Card
+                        key={anggota._key}
+                        className="overflow-hidden hover:shadow-lg transition-shadow border-muted"
+                      >
+                        <div className="aspect-square bg-muted flex items-center justify-center text-4xl font-bold text-muted-foreground/20">
+                          {/* Placeholder Foto */}
+                          {anggota.nama.charAt(0)}
+                        </div>
+                        <CardHeader className="p-4 text-center">
+                          <CardTitle className="text-lg md:text-xl line-clamp-1">
+                            {anggota.nama}
+                          </CardTitle>
+                          <CardDescription className="text-primary font-medium">
+                            {anggota.jabatan}
+                          </CardDescription>
+                          <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                            {anggota.sekolah}
+                          </p>
+                        </CardHeader>
+                      </Card>
+                    ))
+                  ) : (
+                    <div className="col-span-full py-10 text-center text-muted-foreground italic bg-muted/30 rounded-xl border border-dashed">
+                      Belum ada data anggota untuk bidang ini.
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </section>
       </PageWrapper>

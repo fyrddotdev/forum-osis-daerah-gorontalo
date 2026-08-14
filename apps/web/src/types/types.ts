@@ -28,12 +28,17 @@ export interface FullArticle extends Article {
 }
 
 export interface StrukturKepengurusan {
-  angkatan: number;
-  bidang: string;
-  anggotaList: Array<AnggotaBidang>;
+  bidang:
+    | "bph"
+    | "keagamaan"
+    | "hubmaskominfo"
+    | "kajianstrategis"
+    | "organisasikelembagaan"
+    | "psdm";
+  anggotaList: AnggotaBidang[];
 }
+
 export interface AnggotaBidang {
-  _type: "anggota";
   nama: string;
   jabatan: string;
   sekolah: string;
