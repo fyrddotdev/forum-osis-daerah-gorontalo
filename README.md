@@ -4,8 +4,8 @@ Ini adalah repositori resmi untuk website **Forum OSIS Daerah Provinsi Gorontalo
 
 ## 🚀 Status Proyek
 
-**Dalam Pengembangan (Under Development)**  
-Saat ini proyek sedang dalam tahap refactor arsitektur dan pengembangan fitur inti untuk publikasi artikel.
+**Terpublikasi**  
+Kunjungi: https://fodagorontalo.netlify.app/
 
 ## 🛠 Tech Stack
 
