@@ -4,7 +4,7 @@ Ini adalah repositori resmi untuk website **Forum OSIS Daerah Provinsi Gorontalo
 
 ## 🚀 Status Proyek
 
-**Terpublikasi**  
+**Terpublikasi✅**  
 Kunjungi: https://fodagorontalo.netlify.app/
 
 ## 🛠 Tech Stack
