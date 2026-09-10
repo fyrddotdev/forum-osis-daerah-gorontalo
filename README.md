@@ -32,7 +32,7 @@ Proyek ini dibangun menggunakan arsitektur Monorepo dengan **pnpm**:
 ### 1. Cloning Repositori
 
 ```bash
-git clone https://github.com/Forum-OSIS-Daerah-Gorontalo/foda-web.git
+git clone https://github.com/fyrddotdev/foda-web.git
 cd foda-web
 ```
 
@@ -67,6 +67,7 @@ NEXT_SANITY_DATASET=production
 
 ```bash
 SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_APP_ID=your_app_id
 SANITY_STUDIO_DATASET=production
 ```
 
@@ -87,6 +88,22 @@ Jalankan perintah berikut di **root directory**:
   pnpm dev:studio
   ```
 
+### 5. Deploy Sanity
+
+Sanity CMS menyediakan fitur hosting bawaan. Jalankan perintah berikut di **root directory**:
+
+- Arahkan ke folder apps/studio/:
+``` bash
+cd apps/studio/
+```
+- Login ke Sanity Dashboard terlebih dahulu:
+``` bash
+pnpm dlx sanity@latest login
+```
+- Kemudian, deploy:
+``` bash
+pnpm dlx sanity@latest deploy
+```
 ---
 
 ## 📂 Struktur Folder Front-end
