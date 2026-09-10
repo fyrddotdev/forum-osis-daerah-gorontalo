@@ -1,5 +1,6 @@
 import PageWrapper from "@/components/shared/page-wrapper";
 import FadeIn from "@/components/animations/fade-in";
+import FadeInScroll from "@/components/animations/fade-in-scroll";
 import {
   getStrukturKepengurusan,
   getStrukturAngkatanArray,
@@ -14,6 +15,7 @@ import {
   CardContent,
   CardDescription,
 } from "@/components/ui/card";
+import Image from "next/image";
 
 export default async function StrukturOrganisasiPage({
   searchParams,
@@ -29,7 +31,6 @@ export default async function StrukturOrganisasiPage({
     ? await getStrukturKepengurusanByName(q, angkatan)
     : await getStrukturKepengurusan(angkatan);
   const list_angkatan = await getStrukturAngkatanArray();
-  console.log(result);
   const getBidangLabel = (bidang: string) => {
     const labels: Record<string, string> = {
       bph: "Badan Pengurus Harian",
@@ -67,44 +68,59 @@ export default async function StrukturOrganisasiPage({
 
           <div className="mt-4 flex flex-col gap-16">
             {result.map((item) => (
-              <div key={item.bidang} className="space-y-8">
+              <FadeInScroll key={item.bidang}>
+                <div className="space-y-8">
                 <div className="text-center">
                   <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
                     {getBidangLabel(item.bidang)}
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                  {item.anggotaList && item.anggotaList.length > 0 ? (
-                    item.anggotaList.map((anggota) => (
-                      <Card
-                        key={anggota._key}
-                        className="overflow-hidden hover:shadow-lg transition-shadow border-muted"
-                      >
-                        <div className="aspect-square bg-muted flex items-center justify-center text-4xl font-bold text-muted-foreground/20">
-                          {/* Placeholder Foto */}
-                          {anggota.nama.charAt(0)}
-                        </div>
-                        <CardHeader className="p-4 text-center">
-                          <CardTitle className="text-lg md:text-xl line-clamp-1">
-                            {anggota.nama}
-                          </CardTitle>
-                          <CardDescription className="text-primary font-medium">
-                            {anggota.jabatan}
-                          </CardDescription>
-                          <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                            {anggota.sekolah}
-                          </p>
-                        </CardHeader>
-                      </Card>
-                    ))
-                  ) : (
-                    <div className="col-span-full py-10 text-center text-muted-foreground italic bg-muted/30 rounded-xl border border-dashed">
-                      Belum ada data anggota untuk bidang ini.
-                    </div>
-                  )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {item.anggotaList && item.anggotaList.length > 0 ? (
+                      item.anggotaList.map((anggota) => (
+                        <Card
+                          key={anggota.nama}
+                          className="overflow-hidden hover:shadow-lg transition-shadow border-muted p-0 gap-0"
+                        >
+                          <div className="aspect-square relative">
+                            {anggota.foto ? (
+                              <Image
+                                src={anggota.foto}
+                                alt={anggota.nama}
+                                fill={true}
+                                className="relative"
+                              />
+                            ) : (
+                              <Image
+                                src="/photo_placeholder.png"
+                                alt={anggota.nama}
+                                fill={true}
+                                className="relative"
+                              />
+                            )}
+                          </div>
+                          <CardHeader className="p-4 text-center">
+                            <CardTitle className="text-lg md:text-xl font-bold line-clamp-1">
+                              {anggota.nama}
+                            </CardTitle>
+                            <CardDescription className="text-primary font-medium">
+                              {anggota.jabatan}
+                            </CardDescription>
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                              {anggota.sekolah}
+                            </p>
+                          </CardHeader>
+                        </Card>
+                      ))
+                    ) : (
+                      <div className="text-center">
+                        Belum ada data anggota untuk bidang ini.
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </FadeInScroll>
             ))}
           </div>
         </section>

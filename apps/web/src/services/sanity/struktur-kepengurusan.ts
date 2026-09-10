@@ -24,16 +24,19 @@ export async function getStrukturAngkatanArray() {
 }
 
 export async function getStrukturKepengurusan(angkatan: number) {
-  return await client.fetch<StrukturKepengurusan>(STRUKTUR_KEPENGURUSAN_QUERY, {
-    angkatan,
-  });
+  return await client.fetch<StrukturKepengurusan[]>(
+    STRUKTUR_KEPENGURUSAN_QUERY,
+    {
+      angkatan,
+    },
+  );
 }
 
 export async function getStrukturKepengurusanByName(
   name: string,
   angkatan: number,
 ) {
-  return await client.fetch<StrukturKepengurusan>(STRUKTUR_BY_NAME_QUERY, {
+  return await client.fetch<StrukturKepengurusan[]>(STRUKTUR_BY_NAME_QUERY, {
     name,
     angkatan,
   });
