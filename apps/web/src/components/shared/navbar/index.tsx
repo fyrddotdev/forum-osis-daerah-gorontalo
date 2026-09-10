@@ -22,7 +22,6 @@ const navigationItem: NavigationItem[] = [
   // },
   { name: "Struktur Organisasi", href: "/struktur-organisasi" },
   { name: "Artikel", href: "/artikel" },
-  { name: "Galeri", href: "/galeri" },
 ];
 
 export default function Navbar() {
