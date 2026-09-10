@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export function InstagramIcon({
   size = 24,
   color = "currentColor",

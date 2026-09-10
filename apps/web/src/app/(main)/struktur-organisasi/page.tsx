@@ -15,6 +15,9 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { Globe } from "lucide-react";
+import { InstagramIcon } from "@/components/icons/lucide-instagram";
+import { TiktokIcon } from "@/components/icons/lucide-tiktok";
 
 export default async function StrukturOrganisasiPage({
   searchParams,
@@ -69,26 +72,27 @@ export default async function StrukturOrganisasiPage({
             {result.map((item) => (
               <FadeInScroll key={item.bidang}>
                 <div className="space-y-8">
-                <div className="text-center">
-                  <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
-                    {getBidangLabel(item.bidang)}
-                  </h2>
-                </div>
+                  <div className="text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
+                      {getBidangLabel(item.bidang)}
+                    </h2>
+                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <div className="flex flex-wrap justify-center gap-4">
                     {item.anggotaList && item.anggotaList.length > 0 ? (
                       item.anggotaList.map((anggota) => (
                         <Card
                           key={anggota.nama}
-                          className="overflow-hidden hover:shadow-lg transition-shadow border-muted p-0 gap-0"
+                          className="w-full sm:w-52 md:w-60 overflow-hidden hover:shadow-lg transition-shadow border-muted p-0 gap-0"
                         >
                           <div className="aspect-square relative">
-                            {anggota.foto ? (
+                            {anggota.fotoUrl ? (
                               <Image
-                                src={anggota.foto}
+                                src={anggota.fotoUrl}
                                 alt={anggota.nama}
                                 fill={true}
                                 className="relative"
+                                quality={80}
                               />
                             ) : (
                               <Image
@@ -109,11 +113,46 @@ export default async function StrukturOrganisasiPage({
                             <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
                               {anggota.sekolah}
                             </p>
+                            <div className="flex justify-center gap-3 mt-2 text-muted-foreground">
+                              {anggota.instagram && (
+                                <a
+                                  href={`https://instagram.com/${anggota.instagram}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label="Instagram"
+                                  className="hover:text-primary transition-colors"
+                                >
+                                  <InstagramIcon className="w-4 h-4" />
+                                </a>
+                              )}
+                              {anggota.tiktok && (
+                                <a
+                                  href={`https://tiktok.com/@${anggota.tiktok}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label="TikTok"
+                                  className="hover:text-primary transition-colors"
+                                >
+                                  <TiktokIcon className="w-4 h-4" />
+                                </a>
+                              )}
+                              {anggota.website && (
+                                <a
+                                  href={`https://${anggota.website}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label="Website"
+                                  className="hover:text-primary transition-colors"
+                                >
+                                  <Globe className="w-4 h-4" />
+                                </a>
+                              )}
+                            </div>
                           </CardHeader>
                         </Card>
                       ))
                     ) : (
-                      <div className="text-center">
+                      <div className="text-center auto-cols-auto">
                         Belum ada data anggota untuk bidang ini.
                       </div>
                     )}

@@ -7,17 +7,23 @@ export const LIST_ANGKATAN_QUERY = groq`array::unique(*[_type == "strukturKepeng
 export const STRUKTUR_BY_NAME_QUERY = groq`*[_type == "strukturKepengurusan" && angkatan == $angkatan && anggotaList[].nama match "$name*"] | order(select(
   bidang == "bph" => 1,
   2
-)) {
-  anggotaList,
-  bidang
-}`;
+  )) {
+    bidang,
+    "anggotaList": anggotaList[] {
+      ...,
+      "fotoUrl": foto.asset->url
+    }
+  }`;
 export const STRUKTUR_KEPENGURUSAN_QUERY = groq`*[_type == "strukturKepengurusan" && angkatan == $angkatan] | order(select(
   bidang == "bph" => 1,
   2
-)) {
-  anggotaList,
-  bidang
-}`;
+  )) {
+    bidang,
+    "anggotaList": anggotaList[] {
+      ...,
+      "fotoUrl": foto.asset->url
+    }
+  }`;
 
 export async function getStrukturAngkatanArray() {
   return await client.fetch<number[]>(LIST_ANGKATAN_QUERY);

@@ -46,4 +46,5 @@ export interface AnggotaBidang {
   tiktok?: string;
   website?: string;
   foto?: string;
+  fotoUrl?: string;
 }
