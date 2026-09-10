@@ -12,6 +12,7 @@ export default defineCliConfig({
     dataset: process.env.SANITY_STUDIO_DATASET || 'production',
   },
   deployment: {
+    appId: 'uxagkgfchjv8kgmu2bmfim75',
     autoUpdates: true,
   },
 })
