@@ -6,16 +6,22 @@ import { LucideSearch } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Searchbar() {
+export default function Searchbar({
+  url,
+  placeholder,
+}: {
+  url: string;
+  placeholder?: string;
+}) {
   const [SearchText, setSearchText] = useState("");
   const router = useRouter();
 
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (SearchText.trim()) {
-      router.push(`/artikel?q=${encodeURIComponent(SearchText.trim())}`);
+      router.push(`${url}?q=${encodeURIComponent(SearchText.trim())}`);
     } else {
-      router.push("/artikel");
+      router.push(`${url}`);
     }
   };
 
@@ -23,7 +29,7 @@ export default function Searchbar() {
     <form onSubmit={handleSearch} className="flex flex-row gap-2">
       <Input
         type="text"
-        placeholder="Cari artikel..."
+        placeholder={placeholder}
         className="outline-8 border-accent"
         onChange={(e) => setSearchText(e.target.value)}
       />

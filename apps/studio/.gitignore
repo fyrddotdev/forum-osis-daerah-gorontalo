@@ -25,7 +25,6 @@
 # Typescript
 *.tsbuildinfo
 
-# Dotenv and similar local-only files
-.env
-.env.*
-*.local
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example

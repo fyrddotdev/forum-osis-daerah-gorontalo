@@ -11,17 +11,17 @@ import NavbarDesktopMenu from "./navbar-desktop-menu";
 
 const navigationItem: NavigationItem[] = [
   { name: "Beranda", href: "/" },
-  {
-    name: "Organisasi",
-    href: "#",
-    isDropdown: true,
-    dropdownItems: [
-      { name: "Tentang Organisasi", href: "/organisasi/tentang" },
-      { name: "Struktur Kepengurusan", href: "/organisasi/struktur" },
-    ],
-  },
+  // {
+  //   name: "Organisasi",
+  //   href: "#",
+  //   isDropdown: true,
+  //   dropdownItems: [
+  //     { name: "Tentang Organisasi", href: "/organisasi/tentang" },
+  //     { name: "Struktur Kepengurusan", href: "/organisasi/struktur" },
+  //   ],
+  // },
+  { name: "Struktur Organisasi", href: "/struktur-organisasi" },
   { name: "Artikel", href: "/artikel" },
-  { name: "Galeri", href: "/galeri" },
 ];
 
 export default function Navbar() {
@@ -45,7 +45,9 @@ export default function Navbar() {
           // For its children
           "p-3 sm:p-4 flex items-center justify-between",
 
-          isScrolled ? "bg-background drop-shadow-md" : "bg-transparent",
+          isScrolled
+            ? "bg-background/80 backdrop-blur-sm drop-shadow-md"
+            : "bg-transparent",
         )}
       >
         {/* Icon ( Mobile )*/}

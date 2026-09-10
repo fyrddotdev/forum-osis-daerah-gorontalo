@@ -42,6 +42,7 @@ export const ARTICLE_BY_SLUG_QUERY = groq`*[_type == "artikel" && slug.current =
   title,
 }`;
 
+
 export async function getLatestArticles() {
   return await client.fetch<Article[]>(
     LATEST_ARTICLES_QUERY,
