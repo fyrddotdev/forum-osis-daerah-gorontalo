@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import CardArticle from "@/components/modules/artikel/card-article";
 import { getLatestArticles } from "@/services/sanity/artikel";
+import CallToActionLink from "@/components/shared/call-to-action-link";
 
 export default async function LatestArticles() {
   const response = await getLatestArticles();
@@ -20,16 +19,7 @@ export default async function LatestArticles() {
             organisasi.
           </p>
         </div>
-        <Link
-          href="/artikel"
-          className="flex flex-row items-center gap-1 text-zinc-400 hover:text-primary transition-colors duration-300 group"
-        >
-          <span className="text-sm tracking-wider">LIHAT SEMUA</span>
-          <ArrowRight
-            size={16}
-            className="group-hover:translate-x-1 transition-transform"
-          />
-        </Link>
+        <CallToActionLink href="/artikel" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

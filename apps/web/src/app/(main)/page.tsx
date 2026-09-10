@@ -2,6 +2,7 @@ import HeroSection from "@/components/modules/home/hero";
 import LatestArticles from "@/components/modules/home/latest-article";
 import AboutUs from "@/components/modules/home/about-us";
 import FadeInScroll from "@/components/animations/fade-in-scroll";
+import OrganizationStructure from "@/components/modules/home/organization-structure";
 
 export default function MainPage() {
   return (
@@ -13,6 +14,9 @@ export default function MainPage() {
         <div className="flex flex-col gap-16 my-12">
           <FadeInScroll>
             <AboutUs />
+          </FadeInScroll>
+          <FadeInScroll>
+            <OrganizationStructure />
           </FadeInScroll>
           <FadeInScroll>
             <LatestArticles />
