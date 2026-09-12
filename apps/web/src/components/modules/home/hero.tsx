@@ -28,9 +28,9 @@ export default function HeroSection() {
             priority
             className="mb-2 sm:mb-4 drop-shadow-lg"
           />
-          <h2 className={cn("text-base sm:text-xl md:text-2xl lg:text-3xl")}>
+          <p className={cn("text-base sm:text-xl md:text-2xl lg:text-3xl")}>
             Selamat Datang di
-          </h2>
+          </p>
           <h1
             className={cn(
               "text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6 tracking-tight drop-shadow-md",
@@ -38,9 +38,9 @@ export default function HeroSection() {
           >
             FORUM OSIS DAERAH PROVINSI GORONTALO
           </h1>
-          <h3 className="text-lg font-medium italic mb-8">
+          <p className="text-lg font-medium italic mb-8">
             BE BRAVE, BE THE CHANGE 💛✨
-          </h3>
+          </p>
           <div className="z-10">
             <ScrollIndicator />
           </div>
