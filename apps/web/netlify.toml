@@ -1,9 +1,13 @@
-server {
-    server_name www.fodagorontalo.netlify.app;
-    return 301 https://fodagorontalo.netlify.app$request_uri;
-}
+[[redirects]]
+  from = "https://*"
+  to = "https://netlify.app"
+  status = 301
+  force = true
+  conditions = {Role = []} # Membantu Netlify memisahkan domain utama
 
-server {
-    server_name fodagorontalo.netlify.app;
-    # Server Code
-}
+# Aturan khusus jika ada yang mengakses lewat HTTP biasa (bukan HTTPS)
+[[redirects]]
+  from = "http://*"
+  to = "https://netlify.app"
+  status = 301
+  force = true
