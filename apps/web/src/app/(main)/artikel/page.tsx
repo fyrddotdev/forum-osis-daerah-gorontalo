@@ -17,6 +17,8 @@ export default async function ArtikelPage({
   const result = query
     ? await searchArticles(query, limit)
     : await getAllArticles(limit);
+  console.log(result);
+
 
   return (
     <FadeInScroll>
@@ -37,6 +39,11 @@ export default async function ArtikelPage({
                 <CardArticle key={item.slug} article={item} />
               ))}
             </div>
+            {result.length === 0 && (
+              <p className="text-center text-sm sm:text-base lg:text-xl font-bold mt-12">
+                Tidak ada artikel yang ditemukan :(
+              </p>
+            )}
             {result.length >= limit && (
               <div className="mt-10 flex justify-center">
                 <Link
