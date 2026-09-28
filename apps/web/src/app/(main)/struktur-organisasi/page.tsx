@@ -104,13 +104,13 @@ export default async function StrukturOrganisasiPage({
                             )}
                           </div>
                           <CardHeader className="p-4 text-center">
-                            <CardTitle className="text-lg md:text-xl font-bold line-clamp-1">
+                            <CardTitle className="text-lg md:text-xl font-bold line-clamp-2">
                               {anggota.nama}
                             </CardTitle>
                             <CardDescription className="text-primary font-medium">
                               {anggota.jabatan}
                             </CardDescription>
-                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
                               {anggota.sekolah}
                             </p>
                             <div className="flex justify-center gap-3 mt-2 text-muted-foreground">
