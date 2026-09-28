@@ -91,15 +91,15 @@ export default async function StrukturOrganisasiPage({
                                 src={anggota.fotoUrl}
                                 alt={anggota.nama}
                                 fill={true}
-                                className="relative"
+                                className="object-cover"
                                 quality={80}
                               />
                             ) : (
                               <Image
                                 src="/photo_placeholder.png"
                                 alt={anggota.nama}
-                                fill={true}
-                                className="relative"
+                                fill
+                                className="object-cover"
                               />
                             )}
                           </div>
