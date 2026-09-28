@@ -27,7 +27,10 @@ export default function FadeInScroll({ children, once = true }: Props) {
       variants={FadeInScrollVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: 0.2 }}
+      viewport={{ 
+        once, 
+        amount: 0.2
+      }}
     >
       {children}
     </motion.div>

@@ -4,16 +4,18 @@ import { StrukturKepengurusan } from "@/types/types";
 
 export const LIST_ANGKATAN_QUERY = groq`array::unique(*[_type == "strukturKepengurusan"].angkatan) | order(@ desc)`;
 
-export const STRUKTUR_BY_NAME_QUERY = groq`*[_type == "strukturKepengurusan" && angkatan == $angkatan && anggotaList[].nama match $name] | order(select(
-  bidang == "bph" => 1,
-  2
-)) {
-  bidang,
-  "anggotaList": anggotaList[] {
-    ...,
-    "fotoUrl": foto.asset->url
+export const STRUKTUR_BY_NAME_QUERY = groq`
+  *[_type == "strukturKepengurusan" && angkatan == $angkatan && count(anggotaList[nama match $name]) > 0] | order(select(
+    bidang == "bph" => 1,
+    2
+  )) {
+    bidang,
+    "anggotaList": anggotaList[nama match $name] {
+      ...,
+      "fotoUrl": foto.asset->url
+    }
   }
-}`;
+`;
 
 export const STRUKTUR_KEPENGURUSAN_QUERY = groq`*[_type == "strukturKepengurusan" && angkatan == $angkatan] | order(select(
   bidang == "bph" => 1,
@@ -34,13 +36,13 @@ export async function getStrukturKepengurusan(angkatan: number) {
   if (!angkatan) return [];
   return await client.fetch<StrukturKepengurusan[]>(
     STRUKTUR_KEPENGURUSAN_QUERY,
-    { angkatan }
+    { angkatan },
   );
 }
 
 export async function getStrukturKepengurusanByName(
   name: string,
-  angkatan: number
+  angkatan: number,
 ) {
   if (!angkatan) return [];
   return await client.fetch<StrukturKepengurusan[]>(STRUKTUR_BY_NAME_QUERY, {

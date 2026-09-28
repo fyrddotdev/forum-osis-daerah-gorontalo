@@ -70,95 +70,94 @@ export default async function StrukturOrganisasiPage({
 
           <div className="mt-4 flex flex-col gap-16">
             {result.map((item) => (
-              <FadeInScroll key={item.bidang}>
-                <div className="space-y-8">
-                  <div className="text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
-                      {getBidangLabel(item.bidang)}
-                    </h2>
-                  </div>
+              <div key={item.bidang} className="space-y-8">
+                <div className="text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold inline-block border-b-4 border-primary pb-2 uppercase tracking-wide">
+                    {getBidangLabel(item.bidang)}
+                  </h2>
+                </div>
 
-                  <div className="flex flex-wrap justify-center gap-4">
-                    {item.anggotaList && item.anggotaList.length > 0 ? (
-                      item.anggotaList.map((anggota) => (
-                        <Card
-                          key={anggota.nama}
-                          className="w-full sm:w-52 md:w-60 overflow-hidden hover:shadow-lg transition-shadow border-muted p-0 gap-0"
-                        >
-                          <div className="aspect-square relative">
-                            {anggota.fotoUrl ? (
-                              <Image
-                                src={anggota.fotoUrl}
-                                alt={anggota.nama}
-                                fill={true}
-                                className="object-cover"
-                                quality={80}
-                              />
-                            ) : (
-                              <Image
-                                src="/photo_placeholder.png"
-                                alt={anggota.nama}
-                                fill
-                                className="object-cover"
-                              />
+                <div className="flex flex-wrap justify-center gap-4">
+                  {item.anggotaList && item.anggotaList.length > 0 ? (
+                    item.anggotaList.map((anggota) => (
+                      <Card
+                        key={anggota.nama}
+                        className="w-48 sm:w-64 md:w-80 overflow-hidden hover:shadow-lg transition-shadow border-muted p-0 gap-0"
+                      >
+                        <div className="aspect-square relative">
+                          {anggota.fotoUrl ? (
+                            <Image
+                              src={anggota.fotoUrl}
+                              alt={anggota.nama}
+                              fill
+                              sizes="(max-width: 640px) 184px, (max-width: 768px) 208px, (max-width: 1024px) 240px, 272px"
+                              className="object-cover"
+                            />
+                          ) : (
+                            <Image
+                              src="/photo_placeholder.png"
+                              alt={anggota.nama}
+                              fill
+                              sizes="(max-width: 640px) 184px, (max-width: 768px) 208px, (max-width: 1024px) 240px, 272px"
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
+                        <CardHeader className="p-4 my-auto text-center">
+                          <CardTitle className="text-base/6 sm:text-lg/6 md:text-xl/6 font-bold line-clamp-2">
+                            {anggota.nama}
+                          </CardTitle>
+                          <CardDescription className="text-primary font-medium">
+                            {anggota.jabatan}
+                          </CardDescription>
+                          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                            {anggota.sekolah}
+                          </p>
+                          <div className="flex justify-center gap-3 mt-2 text-muted-foreground">
+                            {anggota.instagram && (
+                              <a
+                                href={`https://instagram.com/${anggota.instagram}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                                className="hover:text-primary transition-colors"
+                              >
+                                <InstagramIcon className="w-4 h-4" />
+                              </a>
+                            )}
+                            {anggota.tiktok && (
+                              <a
+                                href={`https://tiktok.com/@${anggota.tiktok}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="TikTok"
+                                className="hover:text-primary transition-colors"
+                              >
+                                <TiktokIcon className="w-4 h-4" />
+                              </a>
+                            )}
+                            {anggota.website && (
+                              <a
+                                href={`https://${anggota.website}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Website"
+                                className="hover:text-primary transition-colors"
+                              >
+                                <Globe className="w-4 h-4" />
+                              </a>
                             )}
                           </div>
-                          <CardHeader className="p-4 text-center">
-                            <CardTitle className="text-lg md:text-xl font-bold line-clamp-2">
-                              {anggota.nama}
-                            </CardTitle>
-                            <CardDescription className="text-primary font-medium">
-                              {anggota.jabatan}
-                            </CardDescription>
-                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                              {anggota.sekolah}
-                            </p>
-                            <div className="flex justify-center gap-3 mt-2 text-muted-foreground">
-                              {anggota.instagram && (
-                                <a
-                                  href={`https://instagram.com/${anggota.instagram}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Instagram"
-                                  className="hover:text-primary transition-colors"
-                                >
-                                  <InstagramIcon className="w-4 h-4" />
-                                </a>
-                              )}
-                              {anggota.tiktok && (
-                                <a
-                                  href={`https://tiktok.com/@${anggota.tiktok}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="TikTok"
-                                  className="hover:text-primary transition-colors"
-                                >
-                                  <TiktokIcon className="w-4 h-4" />
-                                </a>
-                              )}
-                              {anggota.website && (
-                                <a
-                                  href={`https://${anggota.website}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Website"
-                                  className="hover:text-primary transition-colors"
-                                >
-                                  <Globe className="w-4 h-4" />
-                                </a>
-                              )}
-                            </div>
-                          </CardHeader>
-                        </Card>
-                      ))
-                    ) : (
-                      <div className="text-center auto-cols-auto">
-                        Belum ada data anggota untuk bidang ini.
-                      </div>
-                    )}
-                  </div>
+                        </CardHeader>
+                      </Card>
+                    ))
+                  ) : (
+                    <div className="text-center auto-cols-auto">
+                      Belum ada data anggota untuk bidang ini.
+                    </div>
+                  )}
                 </div>
-              </FadeInScroll>
+              </div>
             ))}
           </div>
         </section>
